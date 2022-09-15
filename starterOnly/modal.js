@@ -67,14 +67,38 @@ function clearCall() {
   });
 }
 
+// close modal form
+closeModal.onclick = function () {
+  if (modal.style.display !== "none") {
+    modal.style.display = "none";
+  }
+}
 
 // not refreshing page when submit
+// clear invalid msg every try
+clickBtn.onclick = function () {
+  const msg = document.querySelectorAll('.invalidMessage');
+  msg.forEach(msg => {
+    msg.remove();
+  });
+  verifyValidityFirst();
+  verifyValidityLast();
+  verifyValidityEmail();
+  verifyValidityBirthdate();
+  verifyValidityQuantity();
+  verifyValidityTerms();
+}
+
+// not refreshing page on submit
 function handleForm(e) {
   e.preventDefault();
   form.style.height = "0px";
   form.style.visibility = "hidden";
   modalBody.style.minHeight = "500px";
   thanks.classList.add("thanksmessage");
+  var thanks = document.createElement('div');
+  thanks.classList.add("thanks-message");
+  modalBody.appendChild(thanks).innerText = "Merci ! Votre réservation a été reçue.";
 
 } 
 form.addEventListener('submit', handleForm);
