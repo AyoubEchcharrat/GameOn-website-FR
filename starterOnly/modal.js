@@ -22,7 +22,7 @@ var firstName = document.getElementById('first');
 var lastName = document.getElementById('last');
 var condition = document.getElementById('checkbox1');
 var birthdate = document.getElementById('birthdate');
-var letters = /^[A-Za-z\-]+/;
+var letters = /[a-z]/gi;
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -45,6 +45,8 @@ closeModal.onclick = function () {
     for(var i = 0, max = input.length; i < max; i++){
       input[i].value = ""; 
     }
+    document.getElementById("checkbox1").checked = false;
+    document.getElementById("checkbox2").checked = false;
     clearCall() 
   }
 }
