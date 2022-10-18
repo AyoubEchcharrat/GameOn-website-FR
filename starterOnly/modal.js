@@ -22,10 +22,11 @@ var firstName = document.getElementById('first');
 var lastName = document.getElementById('last');
 var condition = document.getElementById('checkbox1');
 var birthdate = document.getElementById('birthdate');
+var letters = /^[A-Za-z\-]+/;
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
+ 
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block"; 
@@ -87,17 +88,15 @@ function verifyValidityFirst() {
     firstName.setCustomValidity(" ");
     var div = document.createElement('div');
     div.classList.add("invalidMessage");
-    if (firstName.value.length < 2) {
-      text = "Ce champ est obligatoire (2 caractères minimum)";
+    if (firstName.value.length < 2 | !firstName.value.match(letters)) {
+      text = "Ce champ est obligatoire, 2 caractères minimum (A-Z)";
     } else {
-      firstName.setCustomValidity("");
-      text = "";
+        firstName.setCustomValidity("");
+        text = "";
     } 
     document.getElementById('first').closest('.formData').appendChild(div).innerText = text;
   }
 }
-
-
 
 // form invalid msg : nom
 function verifyValidityLast() {
@@ -106,8 +105,8 @@ function verifyValidityLast() {
     lastName.setCustomValidity(" ");
     var div = document.createElement('div');
     div.classList.add("invalidMessage");
-    if (lastName.value.length < 2) {
-      text = "Ce champ est obligatoire (2 caractères minimum)";
+    if (lastName.value.length < 2 | !lastName.value.match(letters)) {
+      text = "Ce champ est obligatoire, 2 caractères minimum (A-Z)";
     } else {
       lastName.setCustomValidity("");
       text = "";
